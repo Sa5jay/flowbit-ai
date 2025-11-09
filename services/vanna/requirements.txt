@@ -2,5 +2,8 @@ fastapi
 uvicorn
 python-dotenv
 psycopg[binary]
-vanna[groq,chromadb]
+
+# These are the three main packages we need
+vanna
 groq
+chromadb
