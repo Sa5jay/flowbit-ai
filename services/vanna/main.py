@@ -72,7 +72,7 @@ async def ask_question(request: QueryRequest):
 
 @app.get("/")
 def read_root():
-    return {"message": "Vanna AI Server with Groq is running"}
+    return {"message": "Vanna AI Server with Groq is LIVE"}
 
 # --- 7. Run the Server ---
 if __name__ == "__main__":
