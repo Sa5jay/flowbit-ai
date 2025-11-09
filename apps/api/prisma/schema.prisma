@@ -1,0 +1,42 @@
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  OVERDUE
+}
+
+model Invoice {
+  id            String        @id @default(cuid())
+  invoiceNumber String        @unique
+  amount        Decimal       @db.Decimal(10, 2)
+  issuedAt      DateTime
+  dueDate       DateTime
+  status        InvoiceStatus @default(PENDING)
+
+  vendor      Vendor     @relation(fields: [vendorId], references: [id])
+  vendorId    String     @index
+
+  category    Category   @relation(fields: [categoryId], references: [id])
+  categoryId  String     @index
+}
+
+model Vendor {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  invoices Invoice[]
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  invoices Invoice[]
+}

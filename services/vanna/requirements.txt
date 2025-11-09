@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-dotenv
+psycopg[binary]
+
+# This is the Vanna setup that includes Groq and ChromaDB
+"vanna[groq,chromadb]"
